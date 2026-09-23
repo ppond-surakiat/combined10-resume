@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Developer Resume - Colorful Template</title>
+    
+    <!-- Google Fonts: Inter for clean typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#8B5CF6',
+                            pink: '#EC4899',
+                            orange: '#F97316',
+                            cyan: '#06B6D4',
+                            yellow: '#F59E0B',
+                            green: '#10B981'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for extra colorfulness and animations */
+        body {
+            background-color: #F3F4F6;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #8B5CF6, #EC4899, #F97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #8B5CF6, #EC4899, #F97316);
+            background-size: 200% 200%;
+            animation: gradientMove 5s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.15), 0 10px 10px -5px rgba(236, 72, 153, 0.1);
+        }
+
+        /* Colorful Timeline setup */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px currentColor;
+            background-color: white;
+            z-index: 10;
+        }
+        
+        .timeline-border {
+            border-image: linear-gradient(to bottom, #8B5CF6, #EC4899, #06B6D4) 1 100%;
+        }
+
+        /* Print styles to ensure it prints well */
+        @media print {
+            body {
+                background: white;
+            }
+            .no-print {
+                display: none;
+            }
+            .print-break-inside-avoid {
+                break-inside: avoid;
+            }
+            .shadow-xl, .shadow-md {
+                box-shadow: none !important;
+                border: 1px solid #e5e7eb;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row relative">
+        
+        <!-- Print Button (Hidden on Print) -->
+        <button onclick="window.print()" class="no-print absolute top-4 right-4 z-50 bg-white/20 backdrop-blur-md border border-white/40 text-gray-700 hover:bg-white hover:text-brand-purple transition-colors p-3 rounded-full shadow-lg group">
+            <i class="fas fa-print group-hover:scale-110 transition-transform"></i>
+        </button>
+
+        <!-- LEFT COLUMN - Colorful Profile -->
+        <aside class="w-full md:w-1/3 gradient-bg text-white p-8 md:p-10 flex flex-col justify-between">
+            <div>
+                <!-- Profile Image -->
+                <div class="flex justify-center mb-8 relative group">
+                    <div class="w-40 h-40 rounded-full border-4 border-white/30 p-1 relative overflow-hidden backdrop-blur-sm shadow-2xl">
+                        <!-- Image Element that gets updated -->
+                        <img id="profile-img" src="https://placehold.co/400x400/ffffff/8B5CF6?text=JS" alt="Profile Picture" class="w-full h-full object-cover rounded-full">
+                        
+                        <!-- Upload Overlay -->
+                        <label for="image-upload" class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer rounded-full">
+                            <i class="fas fa-camera text-white text-2xl mb-1"></i>
+                            <span class="text-white text-xs font-semibold">Change Photo</span>
+                        </label>
+                        <!-- Hidden File Input -->
+                        <input type="file" id="image-upload" accept="image/*" class="hidden">
+                    </div>
+                    <!-- Fun floating shapes -->
+                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-brand-cyan/80 rounded-full blur-xl mix-blend-overlay pointer-events-none"></div>
+                    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-brand-yellow/80 rounded-full blur-xl mix-blend-overlay pointer-events-none"></div>
+                </div>
+
+                <!-- Header Info -->
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl font-extrabold tracking-tight mb-2 drop-shadow-md">Jordan Smith</h1>
+                    <h2 class="text-xl font-medium text-white/90 bg-white/20 inline-block px-4 py-1.5 rounded-full backdrop-blur-sm border border-white/30">Creative Software Engineer</h2>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-5 mb-10">
+                    <h3 class="text-lg font-bold border-b border-white/30 pb-2 mb-4 uppercase tracking-wider text-white/90">Contact</h3>
+                    <a href="mailto:jordan.smith@example.com" class="flex items-center gap-4 hover:translate-x-2 transition-transform group">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/30 group-hover:bg-white group-hover:text-brand-pink transition-colors">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white/90">jordan.smith@example.com</span>
+                    </a>
+                    <a href="tel:+1234567890" class="flex items-center gap-4 hover:translate-x-2 transition-transform group">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/30 group-hover:bg-white group-hover:text-brand-purple transition-colors">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white/90">+1 (234) 567-890</span>
+                    </a>
+                    <a href="https://github.com/jordansmith" target="_blank" class="flex items-center gap-4 hover:translate-x-2 transition-transform group">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/30 group-hover:bg-white group-hover:text-brand-orange transition-colors">
+                            <i class="fab fa-github text-lg"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white/90">github.com/jordansmith</span>
+                    </a>
+                    <a href="#" target="_blank" class="flex items-center gap-4 hover:translate-x-2 transition-transform group">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/30 group-hover:bg-white group-hover:text-brand-cyan transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white/90">linkedin.com/in/jordansmith</span>
+                    </a>
+                    <a href="#" target="_blank" class="flex items-center gap-4 hover:translate-x-2 transition-transform group">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/30 group-hover:bg-white group-hover:text-brand-green transition-colors">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white/90">jordansmith.dev</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div>
+                <h3 class="text-lg font-bold border-b border-white/30 pb-2 mb-4 uppercase tracking-wider text-white/90">Education</h3>
+                <div class="mb-4">
+                    <h4 class="font-bold text-white text-lg">B.S. Computer Science</h4>
+                    <p class="text-white/80 text-sm mb-1"><i class="fas fa-university mr-2"></i>University of Technology</p>
+                    <p class="text-white/70 text-xs bg-white/20 inline-block px-2 py-0.5 rounded">2016 - 2020</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT COLUMN - Main Content -->
+        <main class="w-full md:w-2/3 p-8 md:p-12 bg-white">
+            
+            <!-- About Me -->
+            <section class="mb-12">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-brand-purple flex items-center justify-center text-xl shadow-sm">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-gray-800">About <span class="gradient-text">Me</span></h3>
+                </div>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    Passionate and creative Software Developer with over 5 years of experience in building vibrant, user-centric web applications and robust backend architectures. I love combining logic with creative design to build software that not only functions flawlessly but also brings joy to its users. Always eager to learn new technologies and embrace challenging puzzles.
+                </p>
+            </section>
+
+            <!-- Skills -->
+            <section class="mb-12 print-break-inside-avoid">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-pink-100 text-brand-pink flex items-center justify-center text-xl shadow-sm">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-gray-800">Tech <span class="gradient-text">Stack</span></h3>
+                </div>
+                
+                <div class="flex flex-wrap gap-3">
+                    <!-- Bright Skill Tags -->
+                    <span class="px-4 py-2 rounded-full font-semibold text-sm bg-yellow-100 text-yellow-700 border border-yellow-200 hover:scale-105 transition-transform cursor-default flex items-center gap-2 shadow-sm">
+                        <i class="fab fa-js text-yellow-500"></i> JavaScript
+                    </span>
+                    <span class="px-4 py-2 rounded-full font-semibold text-sm bg-cyan-100 text-cyan-700 border border-cyan-200 hover:scale-105 transition-transform cursor-default flex items-center gap-2 shadow-sm">
+                        <i class="fab fa-react text-cyan-500"></i> React
+                    </span>
+                    <span class="px-4 py-2 rounded-full font-semibold text-sm bg-green-100 text-green-700 border border-green-200 hover:scale-105 transition-transform cursor-default flex items-center gap-2 shadow-sm">
+                        <i class="fab fa-node-js text-green-500"></i> Node.js
+                    </span>
+                    <span class="px-4 py-2 rounded-full font-semibold text-sm bg-blue-100 text-blue-700 border border-blue-200 hover:scale-105 transition-transform cursor-default flex items-center gap-2 shadow-sm">
+                        <i class="fab fa-python text-blue-500"></i> Python
+                    </span>
+                    <span class="px-4 py-2 rounded-full font-semibold text-sm bg-pink-100 text-pink-700 border border-pink-200 hover:scale-105 transition-transform cursor-default flex items-center gap-2 shadow-sm">
+                        <i class="fab fa-sass text-pink-500"></i> SASS/CSS
+                    </span>
+                    <span class="px-4 py-2 rounded-full font-semibold text-sm bg-sky-100 text-sky-700 border border-sky-200 hover:scale-105 transition-transform cursor-default flex items-center gap-2 shadow-sm">
+                        <i class="fas fa-wind text-sky-500"></i> Tailwind
+                    </span>
+                    <span class="px-4 py-2 rounded-full font-semibold text-sm bg-orange-100 text-orange-700 border border-orange-200 hover:scale-105 transition-transform cursor-default flex items-center gap-2 shadow-sm">
+                        <i class="fab fa-aws text-orange-500"></i> AWS
+                    </span>
+                    <span class="px-4 py-2 rounded-full font-semibold text-sm bg-indigo-100 text-indigo-700 border border-indigo-200 hover:scale-105 transition-transform cursor-default flex items-center gap-2 shadow-sm">
+                        <i class="fas fa-database text-indigo-500"></i> PostgreSQL
+                    </span>
+                    <span class="px-4 py-2 rounded-full font-semibold text-sm bg-fuchsia-100 text-fuchsia-700 border border-fuchsia-200 hover:scale-105 transition-transform cursor-default flex items-center gap-2 shadow-sm">
+                        <i class="fab fa-figma text-fuchsia-500"></i> UI/UX Design
+                    </span>
+                </div>
+            </section>
+
+            <!-- Experience -->
+            <section class="mb-12">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-brand-orange flex items-center justify-center text-xl shadow-sm">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-gray-800">Work <span class="gradient-text">Experience</span></h3>
+                </div>
+
+                <div class="pl-8 border-l-4 border-solid timeline-border space-y-10 relative">
+                    
+                    <!-- Job 1 -->
+                    <div class="relative timeline-item text-brand-purple">
+                        <div class="mb-1 flex flex-col sm:flex-row sm:items-center justify-between">
+                            <h4 class="text-xl font-bold text-gray-800">Senior Frontend Developer</h4>
+                            <span class="bg-purple-100 text-brand-purple text-xs font-bold px-3 py-1 rounded-full shadow-sm w-max sm:w-auto mt-2 sm:mt-0">2023 - Present</span>
+                        </div>
+                        <p class="text-purple-600 font-medium mb-3 text-sm"><i class="fas fa-building mr-2"></i>TechNova Solutions</p>
+                        <ul class="list-none space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-brand-purple mt-1 mr-2"></i>
+                                Led a team of 4 developers to rebuild the core customer portal using React and Tailwind CSS, improving load times by 40%.
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-brand-purple mt-1 mr-2"></i>
+                                Implemented complex, highly interactive data visualization dashboards using D3.js.
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-brand-purple mt-1 mr-2"></i>
+                                Established a colorful, accessible design system that increased user engagement across platforms.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="relative timeline-item text-brand-pink">
+                        <div class="mb-1 flex flex-col sm:flex-row sm:items-center justify-between">
+                            <h4 class="text-xl font-bold text-gray-800">Full Stack Developer</h4>
+                            <span class="bg-pink-100 text-brand-pink text-xs font-bold px-3 py-1 rounded-full shadow-sm w-max sm:w-auto mt-2 sm:mt-0">2020 - 2023</span>
+                        </div>
+                        <p class="text-pink-600 font-medium mb-3 text-sm"><i class="fas fa-building mr-2"></i>Creative Pixel Forge</p>
+                        <ul class="list-none space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-brand-pink mt-1 mr-2"></i>
+                                Developed RESTful APIs using Node.js and Express to support mobile and web applications.
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-brand-pink mt-1 mr-2"></i>
+                                Integrated third-party payment gateways (Stripe, PayPal) facilitating over $100k in monthly transactions.
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Job 3 -->
+                    <div class="relative timeline-item text-brand-cyan">
+                        <div class="mb-1 flex flex-col sm:flex-row sm:items-center justify-between">
+                            <h4 class="text-xl font-bold text-gray-800">Junior Web Developer</h4>
+                            <span class="bg-cyan-100 text-brand-cyan text-xs font-bold px-3 py-1 rounded-full shadow-sm w-max sm:w-auto mt-2 sm:mt-0">2018 - 2020</span>
+                        </div>
+                        <p class="text-cyan-600 font-medium mb-3 text-sm"><i class="fas fa-building mr-2"></i>Digital Horizon</p>
+                        <ul class="list-none space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-brand-cyan mt-1 mr-2"></i>
+                                Translated UI/UX design wireframes into functional, responsive HTML/CSS/JS code.
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section class="print-break-inside-avoid">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-100 text-brand-cyan flex items-center justify-center text-xl shadow-sm">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-gray-800">Featured <span class="gradient-text">Projects</span></h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    
+                    <!-- Project 1 -->
+                    <div class="border border-gray-100 rounded-2xl p-6 shadow-md bg-white card-hover relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-brand-purple"></div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 flex items-center justify-between">
+                            NeonTracker
+                            <a href="#" class="text-gray-400 hover:text-brand-purple transition-colors"><i class="fas fa-external-link-alt text-sm"></i></a>
+                        </h4>
+                        <p class="text-gray-600 text-sm mb-4">A vibrantly designed task management application focused on gamifying personal productivity.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-bold px-2 py-1 bg-gray-100 text-gray-600 rounded">React</span>
+                            <span class="text-xs font-bold px-2 py-1 bg-gray-100 text-gray-600 rounded">Firebase</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="border border-gray-100 rounded-2xl p-6 shadow-md bg-white card-hover relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-brand-pink"></div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 flex items-center justify-between">
+                            Chroma UI Lib
+                            <a href="#" class="text-gray-400 hover:text-brand-pink transition-colors"><i class="fas fa-external-link-alt text-sm"></i></a>
+                        </h4>
+                        <p class="text-gray-600 text-sm mb-4">An open-source library of highly accessible and colorful UI components for Vue.js.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-bold px-2 py-1 bg-gray-100 text-gray-600 rounded">Vue</span>
+                            <span class="text-xs font-bold px-2 py-1 bg-gray-100 text-gray-600 rounded">Storybook</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Script to handle image upload preview -->
+    <script>
+        const imageUpload = document.getElementById('image-upload');
+        const profileImg = document.getElementById('profile-img');
+
+        imageUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Check if the file is an image
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        // Update the src of the image element with the data URL
+                        profileImg.src = e.target.result;
+                    }
+                    
+                    // Read the file as a Data URL
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please select a valid image file.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
